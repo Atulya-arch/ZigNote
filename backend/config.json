@@ -1,3 +1,5 @@
 {
-    "connectionString": "mongodb+srv://testUser:testUser1234@zignote.27hkq9w.mongodb.net/?appName=ZigNote"
+  "appName": "ZigNote",
+  "version": "1.0.0",
+  "defaultNoteLimit": 10
 }
