@@ -213,7 +213,9 @@ app.put("/edit-note/:noteId", authenticateToken, async (req, res) => {
         if(title) note.title = title;
         if(content) note.content = content;
         if(tags) note.tags = tags;
-        if(isPinned) note.isPinned = isPinned;
+        if (isPinned !== undefined) {
+            note.isPinned = isPinned
+        }
 
         await note.save();
 
@@ -352,6 +354,10 @@ app.get("/search-notes", authenticateToken, async (req, res) => {
 
 
 
-app.listen(8000);
+const PORT = process.env.PORT || 8000;
+
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
 
 module.exports = app;
