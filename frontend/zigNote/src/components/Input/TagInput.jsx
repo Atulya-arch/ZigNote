@@ -18,6 +18,7 @@ const TagInput = ({ tags, setTags }) => {
 
     const handleKeyDown = (e) => {
         if (e.key === "Enter") {
+        e.preventDefault();
             addNewTag();
         }
     };
@@ -48,6 +49,7 @@ const TagInput = ({ tags, setTags }) => {
         <div className='flex items-center gap-4 mt-3'>
             <input 
               type="text" 
+              value={inputValue}
               className="text-sm bg-transparent border px-3 py-2 rounded outline-none" 
               placeholder="Add tags"
               onChange={handleInputChange} 
