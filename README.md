@@ -78,7 +78,7 @@ ZigNote/
 
 4. Start the backend server:
    ```bash
-   npm start
+   npm run dev
    ```
    Server runs on `http://localhost:8000`
 
