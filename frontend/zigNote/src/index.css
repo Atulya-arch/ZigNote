@@ -10,7 +10,8 @@
     }
 
     body {
-        background-color: #fdfeff;
+        background-color: #F6F0E8;
+        color: #0F172A;
         overflow-x: hidden;
     }
 }
@@ -18,19 +19,19 @@
 @layer components {
 
     .input-box {
-        @apply w-full text-sm bg-transparent border-[1.5px] px-5 py-3 rounded mb-4 outline-none;
+        @apply w-full text-sm bg-white border border-slate-300 text-slate-900 px-4 py-2.5 rounded-xl mb-4 outline-none placeholder:text-slate-400 focus:border-primary focus:ring-2 focus:ring-primary/20 shadow-sm;
     }
 
     .btn-primary {
-        @apply w-full text-sm bg-primary text-white p-2 rounded my-1 hover:bg-blue-600;
+        @apply w-full text-sm bg-primary text-white py-2.5 rounded-xl my-1 font-medium hover:bg-blue-700 transition-all shadow-sm hover:shadow-md active:scale-[0.99];
     }
 
     .icon-btn {
-        @apply text-xl text-slate-300 cursor-pointer hover:text-primary;
+        @apply text-xl text-slate-500 cursor-pointer hover:text-primary transition-colors;
     }
 
     .input-label {
-        @apply text-xs text-slate-400;
+        @apply text-xs text-slate-400 mb-1 block;
     }
 }
 

@@ -4,6 +4,7 @@ ZigNote is a full-stack notes management application that allows users to secure
 
 ## 🚀 Features
 - User authentication using JWT
+- Email verification during sign up
 - Create, update, and delete notes
 - Pin important notes
 - Tag-based note organization
@@ -35,6 +36,7 @@ ZigNote/
 │   │   └── user.model.js
 │   ├── config.json
 │   ├── index.js
+│   ├── mailer.js
 │   ├── package.json
 │   ├── utilities.js
 │   └── .env
@@ -111,6 +113,8 @@ ZigNote/
 ### Authentication
 - `POST /create-account` - Register a new user
 - `POST /login` - User login
+- `GET /verify-email` - Verify a user's email address
+- `POST /resend-verification` - Resend verification email
 
 ### Notes (Protected)
 - `GET /get-user` - Get user info
@@ -129,6 +133,11 @@ Create a `.env` file in the `backend/` folder:
 ```
 ACCESS_TOKEN_SECRET=your_secure_jwt_secret_key
 MONGO_URI=your_mongodb_connection_string
+SMTP_HOST=your_smtp_host
+SMTP_PORT=your_smtp_port
+SMTP_USER=your_smtp_username
+SMTP_PASS=your_smtp_password
+FRONTEND_BASE_URL=http://localhost:5173
 ```
 
 ## 📌 Future Improvements
@@ -161,4 +170,18 @@ This project is licensed under the ISC License.
 
 ⭐ If you found this project helpful, please give it a star!
 
-    
+## 📜 Full License
+
+Copyright (c) 2024, Atulya Chaturvedi
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted, provided that the above
+copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.

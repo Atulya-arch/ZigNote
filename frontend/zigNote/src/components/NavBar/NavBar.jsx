@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import ProfileInfo from '../Cards/ProfileInfo';
 import { useNavigate } from 'react-router-dom';
 import SearchBar from '../SearchBar/SearchBar';
+import { HiOutlineBars3 } from "react-icons/hi2";
 
-const NavBar = ({ userInfo, onSearchNote, handleClearSearch }) => {
+const NavBar = ({ userInfo, onSearchNote, handleClearSearch, onToggleSideBar }) => {
   const [searchQuery, setSearchQuery] = useState("");
 
   const navigate = useNavigate();
@@ -25,8 +26,21 @@ const NavBar = ({ userInfo, onSearchNote, handleClearSearch }) => {
   };
 
   return (
-    <div className="bg-white flex items-center justify-between px-6 py-2 drop-shadow">
-      <h2 className="text-xl font-medium text-black py-2"> Notes</h2>
+    <div className="bg-white/85 backdrop-blur border-b border-slate-200 shadow-sm flex items-center justify-between px-6 h-14 sticky top-0 z-50">
+      <div className="flex items-center gap-3">
+        <button
+          type="button"
+          onClick={onToggleSideBar}
+          className="p-2 -ml-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors"
+          aria-label="Toggle sidebar"
+        >
+          <HiOutlineBars3 className="text-xl" />
+        </button>
+
+        <h2 className="text-xl font-semibold text-slate-900 tracking-tight">
+          <span className="text-primary">Zig</span>Note
+        </h2>
+      </div>
 
       <SearchBar 
         value={searchQuery}

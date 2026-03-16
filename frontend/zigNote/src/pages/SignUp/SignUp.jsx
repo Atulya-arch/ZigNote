@@ -11,6 +11,8 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
+  const [info, setInfo] = useState("");
+  const [verificationLink, setVerificationLink] = useState("");
 
   const navigate = useNavigate();
 
@@ -33,6 +35,8 @@ const SignUp = () => {
     }
 
     setError('');
+    setInfo("");
+    setVerificationLink("");
 
     //SignUp API Call
     try {
@@ -48,9 +52,11 @@ const SignUp = () => {
         return;
       }
 
-      if(response.data && response.data.accessToken) {
-        localStorage.setItem("token", response.data.accessToken)
-        navigate('/dashboard');
+      if (response.data && response.data.message) {
+        setInfo(response.data.message);
+      }
+      if (response.data && response.data.verificationLink) {
+        setVerificationLink(response.data.verificationLink);
       }
 
     } catch (error) {
@@ -67,10 +73,13 @@ const SignUp = () => {
     <>
     <NavBar />
 
-    <div className='flex items-center justify-center mt-28'>
-      <div className='w-96 border rounded bg-white px-7 py-10'> 
+    <div className="min-h-screen flex items-center justify-center -mt-7">
+      <div className="w-full max-w-md bg-white border border-slate-200 rounded-2xl px-8 py-10 shadow-xl"> 
         <form onSubmit={handleSignUp}>
-          <h4 className="text-2xl mb-7">SignUp</h4>
+          <h4 className="text-2xl font-semibold text-slate-900 mb-2">Create account</h4>
+          <p className="text-sm text-slate-600 mb-6">
+            Join ZigNote to organize your notes beautifully.
+          </p>
 
           <input 
           type="text" 
@@ -93,15 +102,26 @@ const SignUp = () => {
             onChange = {(e) => setPassword(e.target.value)}
           />
 
-          {error && <p className = "text-red-500 text-xs pb-1">{error}</p>}
+          {error && <p className="text-red-500 text-xs pb-1">{error}</p>}
+          {info && !error && <p className="text-emerald-600 text-xs pb-1">{info}</p>}
+          {verificationLink && !error && (
+            <a
+              href={verificationLink}
+              className="text-sm text-primary underline hover:text-blue-700 transition-colors block mb-3"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Open verification link
+            </a>
+          )}
 
           <button type="submit" className="btn-primary">
             Create Account
           </button>
 
-          <p className="text-sm text-center mt-4">
+          <p className="text-sm text-center mt-4 text-slate-600">
             Already have an account?{" "}
-            <Link to="/login" className="font-medium text-primary underline">
+            <Link to="/login" className="font-medium text-primary hover:text-blue-400 transition-colors">
               Login
             </Link>
           </p>

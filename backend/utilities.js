@@ -6,9 +6,9 @@ function authenticateToken(req, res, next) {
 
     if (!token) return res.sendStatus(401);
 
-    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, payload) => {
         if (err) return res.sendStatus(401);
-        req.user = user;
+        req.user = payload;
         next();
     });
 }

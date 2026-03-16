@@ -15,19 +15,19 @@ const Toast = ({ isShown, message, type, onClose }) => {
   }, [onClose]);
 
   return (
-    <div className={`absolute top-20 right-6 transition-all duration-400 ${
+    <div className={`fixed top-20 right-6 transition-all duration-300 ${
       isShown ? "opacity-100" : "opacity-0"
     }`}
     >
-      <div className={`min-w-52 bg-white border shadow-2xl rounded-md after:w-[5px] after:h-full ${
+      <div className={`min-w-52 bg-white border border-slate-200 shadow-xl rounded-xl after:w-[5px] after:h-full ${
         type === "delete" ? "after:bg-red-500" : "after:bg-green-500"
       } after:absolute after:left-0 after:top-0 after:rounded-l-lg`}
       >
 
-      <div className='flex items-center gap-3 py-2 px-4'>
+      <div className="flex items-center gap-3 py-2 px-4">
         <div 
         className={`w-10 h-10 flex items-center justify-center rounded-full ${
-          type === "delete" ? "bg-red-50" : "bg-green-50"}`}
+          type === "delete" ? "bg-red-50" : "bg-emerald-50"}`}
         >
 
           {type === "delete" ? (
@@ -37,7 +37,7 @@ const Toast = ({ isShown, message, type, onClose }) => {
           )}
         </div>
         
-        <p className='text-sm text-slate-800'>
+          <p className="text-sm text-slate-900">
           {message}
         </p>
       </div>
