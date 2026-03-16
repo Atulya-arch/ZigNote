@@ -1,5 +1,5 @@
 import React from "react"
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home/Home"
 import Login from "./pages/Login/Login"
 import SignUp from "./pages/SignUp/SignUp"
@@ -8,6 +8,7 @@ import VerifyEmail from "./pages/VerifyEmail/VerifyEmail"
 const routes = (
   <Router>
     <Routes>
+      <Route path="/" element={<Navigate to="/signup" replace />} />
       <Route path="/dashboard" exact element={<Home />} />
       <Route path="/login" exact element={<Login />} />
       <Route path="/signup" exact element={<SignUp />} />
