@@ -13,11 +13,22 @@ function getTransporter() {
   return nodemailer.createTransport({
     host,
     port,
-    secure: port === 465, // Use true for 465, false for 587
-    auth: { user, pass },
+    secure: port === 465, // true for 465, false for 587
+
+    auth: {
+      user,
+      pass,
+    },
+
+    // Prevent SMTP timeout issues on Render
+    connectionTimeout: 10000,
+    greetingTimeout: 10000,
+    socketTimeout: 10000,
+
     tls: {
-      rejectUnauthorized: false
-    }
+      rejectUnauthorized: false,
+      minVersion: "TLSv1.2",
+    },
   });
 }
 
@@ -33,7 +44,9 @@ async function sendVerificationEmail({ to, verificationUrl }) {
       from,
       to,
       subject: `Verify your email for ${appName}`,
+
       text: `Verify your email by opening this link:\n\n${verificationUrl}\n\nIf you did not create an account, ignore this email.`,
+      
       html: `
         <div style="font-family: Arial, sans-serif; line-height: 1.5">
           <h2 style="margin:0 0 12px 0;">Verify your email</h2>
